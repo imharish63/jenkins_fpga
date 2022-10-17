@@ -1,4 +1,4 @@
-open_proj seg7.xpr
+open_proj jenkins_fpga.xpr
 
 set sim_fileset sim_1
 

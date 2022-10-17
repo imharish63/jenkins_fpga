@@ -1,4 +1,4 @@
-open_proj seg7.xpr
+open_proj jenkins_fpga.xpr
 
 set run_name synth_1
 set cpu_count 4

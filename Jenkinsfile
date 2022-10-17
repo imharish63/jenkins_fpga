@@ -15,8 +15,8 @@ pipeline {
             trackingSubmodules: true]],
           submoduleCfg: [],
           userRemoteConfigs: [[
-            url: 'https://github.com/xilink-vivado/myLab']]])
-      sh 'cd vivado && vivado -mode batch -source first_zynq_system_bd.tcl'
+            url: 'https://github.com/imharish63/jenkins_fpga']]])
+      sh 'cd vivado && vivado -mode batch -source recreate_fpga_project.tcl'
       }
     }
     stage('Run simulation') {
@@ -42,7 +42,7 @@ pipeline {
     stage('Release bitfile') {
       steps {
         sh '''
-        PROJ_NAME=seg7
+        PROJ_NAME=jenkins_fpga
         RELEASE_DIR=/usr/share/nginx/html/releases/
         BASE_NAME=$PROJ_NAME-`date +"%Y-%m-%d-%H-%H:%M"`
         BITFILE=$BASE_NAME.bit
@@ -54,7 +54,7 @@ pipeline {
         echo "Submodules:" >> $INFOFILE
         git submodule status >> $INFOFILE
         cp $INFOFILE $RELEASE_DIR
-        cp vivado/seg7.runs/impl_1/top.bit $RELEASE_DIR/$BITFILE
+        cp vivado/jenkins_fpga.runs/impl_1/top.bit $RELEASE_DIR/$BITFILE
         '''
       }
     }
